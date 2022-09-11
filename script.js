@@ -1,23 +1,26 @@
-var turn = 0;
+var turn = 0; //Turno entre O y X (0 y 1)
 
+//Funcion para seleccionar espacio
 function change(box){
-    if(box.className == "cell E"){
-        if(turn == 0){
+    if(box.className == "cell E"){ //Revisar si el espacio está libre
+        if(turn == 0){ //Si el turno está en 0 el valor del espacio va a ser O
             box.innerHTML = "O";
             turn = 1;
             box.className = "cell D";
             box.style.color = "red"
-        } else {
+        } else { //Si el turno está en 1 el valor del espacio va a ser X
             box.innerHTML = "X";
             turn = 0;
             box.className = "cell D";
             box.style.color = "blue"
         }
-        check();
+        check(); //Revisar si hay un ganador
     }
 }
 
+//Funcion para revisar si hay un ganador
 function check(){
+    //Tomar el valor de cada espacio del juego
     var A = document.getElementById("A").innerHTML;
     var B = document.getElementById("B").innerHTML;
     var C = document.getElementById("C").innerHTML;
@@ -28,6 +31,8 @@ function check(){
     var H = document.getElementById("H").innerHTML;
     var I = document.getElementById("I").innerHTML;
     
+    //Revisar si alguna combinación de tres espacios coinciden
+    //Alertar al ganador y limpiar el tablero
     if(A == B && B == C && A != ""){
         setTimeout(function() {alert(A + " ganó!"); clear()}, 100);
     } else if(D == E && E == F && D != ""){
@@ -49,10 +54,12 @@ function check(){
     }
 }
 
+//Función para recetear el juego
 function reset(){
-    clear();
+    clear(); //Vaciar el tablero
 }
 
+//Función para limpiar el tablero
 function clear(){
     var A = document.getElementById("A");
     var B = document.getElementById("B");
